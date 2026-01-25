@@ -12,8 +12,8 @@ import (
 
 // STRUCT
 
-// CreateUserRequest create user(register)
-type CreateUserRequest struct {
+// createUserRequest create user(register)
+type createUserRequest struct {
 	Email    string `json:"email"`
 	Name     string `json:"name"`
 	Password string `json:"password"`
@@ -29,9 +29,9 @@ type CreateUserResponse struct {
 // HANDLER
 
 func (config *ApiConfig) HandleRegister(w http.ResponseWriter, r *http.Request) {
-	var request CreateUserRequest
+	var request createUserRequest
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
-		RespondWithError(w, http.StatusBadRequest, constants.InvalidRequestBody)
+		ResponseWithError(w, http.StatusBadRequest, constants.InvalidRequestBody)
 		return
 	}
 	if !checkEmptyString(request.Email, constants.EmailRequired, w) {
@@ -42,7 +42,7 @@ func (config *ApiConfig) HandleRegister(w http.ResponseWriter, r *http.Request) 
 	}
 	password, err := auth.HashPassword(request.Password)
 	if err != nil {
-		RespondWithError(w, http.StatusInternalServerError, err.Error())
+		ResponseWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
 	params := database.CreateUserParams{
@@ -52,16 +52,16 @@ func (config *ApiConfig) HandleRegister(w http.ResponseWriter, r *http.Request) 
 	}
 	user, err := config.Queries.CreateUser(r.Context(), params)
 	if err != nil {
-		RespondWithError(w, http.StatusInternalServerError, constants.FailedToCreateUser)
+		ResponseWithError(w, http.StatusInternalServerError, constants.FailedToCreateUser)
 		return
 	}
-	RespondWithJSON(w, http.StatusCreated, mapToCreateUserResponse(user))
+	ResponseWithJSON(w, http.StatusCreated, mapToCreateUserResponse(user))
 }
 
 // HELPER METHODS
 func checkEmptyString(s, errorMessage string, w http.ResponseWriter) bool {
 	if s == "" {
-		RespondWithError(w, http.StatusBadRequest, errorMessage)
+		ResponseWithError(w, http.StatusBadRequest, errorMessage)
 		return false
 	}
 	return true

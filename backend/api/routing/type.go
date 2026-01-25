@@ -15,7 +15,7 @@ type ApiConfig struct {
 	JwtSecret string
 }
 
-func RespondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
+func ResponseWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set(constants.ContentType, constants.MediaTypeJson)
 	w.WriteHeader(code)
 	data := SuccessResponse{
@@ -24,8 +24,8 @@ func RespondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	_ = json.NewEncoder(w).Encode(data)
 }
 
-func RespondWithError(w http.ResponseWriter, code int, msg string) {
-	RespondWithJSON(w, code, ErrorResponse{
+func ResponseWithError(w http.ResponseWriter, code int, msg string) {
+	ResponseWithJSON(w, code, ErrorResponse{
 		Error:  msg,
 		Status: code,
 	})

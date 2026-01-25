@@ -7,4 +7,7 @@ const (
 	FailedToCreateUser      = "failed to create user"
 	InvalidHeaderFieldValue = "invalid header field value"
 	BearerField             = "Bearer"
+	CannotFindUserWithEmail = "cannot find user with email"
+	ErrorValidatingPassword = "error validating password"
+	PasswordNotMatch        = "password not match"
 )
