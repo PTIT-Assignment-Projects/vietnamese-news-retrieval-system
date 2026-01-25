@@ -15,7 +15,7 @@ WHERE refresh_tokens.token = $1
 -- name: RevokeRefreshToken :exec
 UPDATE refresh_tokens
 SET revoked_at = now(), updated_at = now()
-WHERE token = $1;
+WHERE user_id = $1;
 
 -- name: GetRefreshTokenFromUser :one
 SELECT refresh_tokens.token

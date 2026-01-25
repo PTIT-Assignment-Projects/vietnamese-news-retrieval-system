@@ -10,7 +10,7 @@ import {
     LoginOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
-import type {MenuItemType} from "antd/lib/menu/interface";
+import type { MenuItemType } from "antd/lib/menu/interface";
 
 // Define proper types for menu items
 // interface IMenuItem {
@@ -34,22 +34,41 @@ const AppHeader = () => {
     const handleLogout = async () => {
         try {
             const res = await logoutAPI();
-            if (res.statusCode === 200) {
+            const status = res.status;
+
+            // Backend returns 204 No Content on success
+            if (status === 204) {
                 localStorage.removeItem("access_token");
+                localStorage.removeItem("refresh_token");
                 setUser(null);
                 setIsAuthenticated(false);
                 message.success("Logout successfully");
                 navigate("/");
-            } else {
-                notification.error({
-                    message: "Log out failed!",
-                    description: res.message || "Unknown error",
-                });
+                return;
             }
-        } catch (err: any) {
+
+            if (!localStorage.getItem("refresh_token")) {
+                localStorage.removeItem("access_token");
+                setUser(null);
+                setIsAuthenticated(false);
+                message.success("Logout (local)");
+                navigate("/");
+                return;
+            }
+
             notification.error({
-                message: "Log out failed!",
-                description: err?.response?.data?.message || "Unknown error",
+                title: "Log out failed!",
+                description: res?.data?.error || "Unknown error",
+            });
+        } catch (err: any) {
+            // Fail-safe: clear client side state even if server call errors
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            setUser(null);
+            setIsAuthenticated(false);
+            notification.error({
+                title: "Log out failed!",
+                description: err?.response?.data?.error || err?.message || "Unknown error",
             });
         }
     };
@@ -70,7 +89,7 @@ const AppHeader = () => {
                 label: <Link to={"/login"}>Login</Link>,
                 key: "login",
                 icon: <LoginOutlined />,
-                
+
             },
             {
                 label: <Link to={"/register"}>Register</Link>,
@@ -80,7 +99,7 @@ const AppHeader = () => {
         ] : []),
         ...(user?.id ? [
             {
-                label: `Welcome ${user?.fullName}`,
+                label: `Welcome ${user?.name}`,
                 key: "setting",
                 icon: <AliwangwangOutlined />,
                 children: [

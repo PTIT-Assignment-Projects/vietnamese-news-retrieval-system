@@ -35,12 +35,12 @@ func (config *ApiConfig) HandleCreateTokenByRefreshToken(w http.ResponseWriter, 
 
 // POST /api/v1/auth/logout
 func (config *ApiConfig) HandleRevokeRefreshToken(w http.ResponseWriter, r *http.Request) {
-	refreshToken, err := auth.GetBearerToken(r.Header)
+	userId, err := CheckValidToken(r, config.JwtSecret)
 	if err != nil {
 		ResponseWithError(w, http.StatusUnauthorized, err.Error())
 		return
 	}
-	err = config.Queries.RevokeRefreshToken(r.Context(), refreshToken)
+	err = config.Queries.RevokeRefreshToken(r.Context(), userId)
 	if err != nil {
 		ResponseWithError(w, http.StatusBadRequest, err.Error())
 		return

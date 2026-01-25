@@ -14,6 +14,22 @@ import (
 	_ "github.com/lib/pq"
 )
 
+func MiddlewareCORS(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	_ = godotenv.Load()
 	dbURL := os.Getenv(constants.DbUrl)
@@ -45,7 +61,7 @@ func main() {
 
 	server := &http.Server{
 		Addr:    ":8080",
-		Handler: mux,
+		Handler: MiddlewareCORS(mux),
 	}
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		fmt.Errorf("server error : %v", err)
