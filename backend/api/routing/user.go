@@ -12,7 +12,7 @@ import (
 
 // STRUCT
 
-// create user(register)
+// CreateUserRequest create user(register)
 type CreateUserRequest struct {
 	Email    string `json:"email"`
 	Name     string `json:"name"`
