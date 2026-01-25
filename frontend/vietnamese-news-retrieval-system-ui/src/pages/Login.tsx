@@ -1,25 +1,36 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useCurrentApp } from '../context/app.context.tsx';
 import { Button, Form, Input, Card, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { loginAPI } from '../services/api.ts';
 
 const Login = () => {
     const { setUser, setIsAuthenticated } = useCurrentApp();
     const navigate = useNavigate();
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
-        // Mock login
-        const mockUser = {
-            id: '1',
-            fullName: 'Duong VCT',
-            email: values.email,
-            role: 'USER'
-        };
-        setUser(mockUser);
-        setIsAuthenticated(true);
-        localStorage.setItem('access_token', 'mock-token');
-        message.success('Login successfully!');
-        navigate('/');
+
+    const onFinish = async (values: any) => {
+        const { email, password } = values;
+        const res = await loginAPI(email, password);
+
+        if (res.data) {
+            const payload = res.data;
+            const loggedUser = {
+                id: payload.id,
+                name: payload.name,
+                email: payload.email,
+            };
+
+            setUser(loggedUser);
+            setIsAuthenticated(true);
+            localStorage.setItem('access_token', payload.token);
+            localStorage.setItem('refresh_token', payload.refresh_token);
+
+            message.success('Login successfully!');
+            navigate('/');
+        } else {
+            const errorRes = res as any;
+            message.error(errorRes.error || 'Login failed');
+        }
     };
 
     return (
@@ -54,7 +65,7 @@ const Login = () => {
                             Log in
                         </Button>
                         <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                            Or <a href="/register">register now!</a>
+                            Or <Link to="/register">register now!</Link>
                         </div>
                     </Form.Item>
                 </Form>

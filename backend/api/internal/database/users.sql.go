@@ -7,35 +7,103 @@ package database
 
 import (
 	"context"
+	"time"
+
+	"github.com/google/uuid"
 )
 
 const createUser = `-- name: CreateUser :one
-INSERT INTO users (id, created_at, updated_at, email, password)
+INSERT INTO users (id, created_at, updated_at, name, email, password)
 VALUES (
            gen_random_uuid(),
            NOW(),
            NOW(),
-           $1,
-           $2
+        $1,
+           $2,
+           $3
        )
-    RETURNING id, created_at, updated_at, deleted_at, email, password
+    RETURNING id, created_at, updated_at, name, email
 `
 
 type CreateUserParams struct {
+	Name     string
 	Email    string
 	Password string
 }
 
-func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
-	row := q.db.QueryRowContext(ctx, createUser, arg.Email, arg.Password)
-	var i User
+type CreateUserRow struct {
+	ID        uuid.UUID
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	Name      string
+	Email     string
+}
+
+func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (CreateUserRow, error) {
+	row := q.db.QueryRowContext(ctx, createUser, arg.Name, arg.Email, arg.Password)
+	var i CreateUserRow
 	err := row.Scan(
 		&i.ID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
-		&i.DeletedAt,
+		&i.Name,
 		&i.Email,
+	)
+	return i, err
+}
+
+const getUserByEmail = `-- name: GetUserByEmail :one
+SELECT id, name, email, created_at, updated_at, password
+FROM users
+WHERE email = $1
+`
+
+type GetUserByEmailRow struct {
+	ID        uuid.UUID
+	Name      string
+	Email     string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	Password  string
+}
+
+func (q *Queries) GetUserByEmail(ctx context.Context, email string) (GetUserByEmailRow, error) {
+	row := q.db.QueryRowContext(ctx, getUserByEmail, email)
+	var i GetUserByEmailRow
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Email,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 		&i.Password,
+	)
+	return i, err
+}
+
+const getUserByID = `-- name: GetUserByID :one
+SELECT id, name, email, created_at, updated_at
+FROM users
+WHERE id = $1
+`
+
+type GetUserByIDRow struct {
+	ID        uuid.UUID
+	Name      string
+	Email     string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
+
+func (q *Queries) GetUserByID(ctx context.Context, id uuid.UUID) (GetUserByIDRow, error) {
+	row := q.db.QueryRowContext(ctx, getUserByID, id)
+	var i GetUserByIDRow
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Email,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 	)
 	return i, err
 }

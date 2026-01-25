@@ -1,16 +1,26 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { Button, Form, Input, Card, message } from 'antd';
 import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
+import { registerAPI } from '../services/api.ts';
+
+type FieldType = {
+    name: string;
+    email: string;
+    password: string;
+}
 
 const Register = () => {
     const navigate = useNavigate();
 
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
-        // Mock registration
-        message.success('Registration successful! Please login.');
-        navigate('/login');
+    const onFinish = async (values: FieldType) => {
+        const { name, email, password } = values;
+        const res: any = await registerAPI(name, email, password);
+        if (res.data) {
+            message.success('Registration successful! Please login.');
+            navigate('/login');
+        } else {
+            message.error(res.message || 'Registration failed');
+        }
     };
 
     return (
@@ -22,7 +32,7 @@ const Register = () => {
                     layout="vertical"
                 >
                     <Form.Item
-                        name="fullName"
+                        name="name"
                         label="Full Name"
                         rules={[{ required: true, message: 'Please input your full name!' }]}
                     >
@@ -51,7 +61,7 @@ const Register = () => {
                             Register
                         </Button>
                         <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                            Already have an account? <a href="/login">Login here</a>
+                            Already have an account? <Link to="/login">Login Here</Link>;
                         </div>
                     </Form.Item>
                 </Form>
