@@ -26,6 +26,13 @@ type loginUserResponse struct {
 	Token        string    `json:"token"`
 	RefreshToken string    `json:"refresh_token"`
 }
+type fetchAccountResponse struct {
+	ID        string    `json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	Email     string    `json:"email"`
+	Name      string    `json:"name"`
+}
 
 // HANDLER
 func (config *ApiConfig) HandleLogin(w http.ResponseWriter, r *http.Request) {
@@ -70,6 +77,19 @@ func (config *ApiConfig) HandleLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	ResponseWithJSON(w, http.StatusOK, mapUserToLoginUserResponse(user, token, refreshToken))
 }
+func (config *ApiConfig) HandleFetchAccount(w http.ResponseWriter, r *http.Request) {
+	userId, err := CheckValidToken(r, config.JwtSecret)
+	if err != nil {
+		ResponseWithError(w, http.StatusUnauthorized, err.Error())
+		return
+	}
+	user, err := config.Queries.GetUserByID(r.Context(), userId)
+	if err != nil {
+		ResponseWithError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	ResponseWithJSON(w, http.StatusOK, mapToFetchAccountResponse(user))
+}
 
 // MAPPER
 func mapUserToLoginUserResponse(user database.GetUserByEmailRow, token, refreshToken string) loginUserResponse {
@@ -83,8 +103,29 @@ func mapUserToLoginUserResponse(user database.GetUserByEmailRow, token, refreshT
 		RefreshToken: refreshToken,
 	}
 }
+func mapToFetchAccountResponse(user database.GetUserByIDRow) fetchAccountResponse {
+	return fetchAccountResponse{
+		ID:        user.ID.String(),
+		CreatedAt: user.CreatedAt,
+		UpdatedAt: user.UpdatedAt,
+		Name:      user.Name,
+		Email:     user.Email,
+	}
+}
 
 // HELPER
 func CreateToken(userId uuid.UUID, tokenSecret string) (string, error) {
 	return auth.CreateJWT(userId, tokenSecret, time.Duration(constants.ExpiresInSeconds)*time.Second)
+}
+func CheckValidToken(r *http.Request, tokenSecret string) (uuid.UUID, error) {
+	token, err := auth.GetBearerToken(r.Header)
+	if err != nil {
+		//RespondWithError(w, http.StatusUnauthorized, err.Error())
+		return uuid.Nil, err
+	}
+	userId, err := auth.ValidateJWT(token, tokenSecret)
+	if err != nil {
+		return uuid.Nil, err
+	}
+	return userId, nil
 }

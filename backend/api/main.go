@@ -39,6 +39,9 @@ func main() {
 	//AUTH
 	mux.HandleFunc(fmt.Sprintf("%s /api/v1/auth/register", constants.PostMethod), apiConfig.HandleRegister)
 	mux.HandleFunc(fmt.Sprintf("%s /api/v1/auth/login", constants.PostMethod), apiConfig.HandleLogin)
+	mux.HandleFunc(fmt.Sprintf("%s /api/v1/auth/refresh", constants.PostMethod), apiConfig.HandleCreateTokenByRefreshToken)
+	mux.HandleFunc(fmt.Sprintf("%s /api/v1/auth/logout", constants.PostMethod), apiConfig.HandleRevokeRefreshToken)
+	mux.HandleFunc(fmt.Sprintf("%s /api/v1/auth/account", constants.GetMethod), apiConfig.HandleFetchAccount)
 
 	server := &http.Server{
 		Addr:    ":8080",

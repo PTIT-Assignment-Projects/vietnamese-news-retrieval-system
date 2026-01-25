@@ -14,3 +14,7 @@ VALUES (
 SELECT id, name, email, created_at, updated_at, password
 FROM users
 WHERE email = $1;
+-- name: GetUserByID :one
+SELECT id, name, email, created_at, updated_at
+FROM users
+WHERE id = $1;
