@@ -34,7 +34,8 @@ func main() {
 	}
 	appHandler := apiConfig.HandleFile(http.StripPrefix("/app/", fileServer))
 	mux.Handle("/app/", appHandler)
-	mux.HandleFunc("GET /api/health", routing.HealthCheckHandler)
+	mux.HandleFunc(fmt.Sprintf("%s /api/v1/health", constants.GetMethod), routing.HealthCheckHandler)
+	mux.HandleFunc(fmt.Sprintf("%s /api/v1/auth/register", constants.PostMethod), apiConfig.HandleRegister)
 
 	server := &http.Server{
 		Addr:    ":8080",

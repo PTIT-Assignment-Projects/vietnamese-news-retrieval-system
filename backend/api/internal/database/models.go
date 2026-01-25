@@ -17,5 +17,6 @@ type User struct {
 	UpdatedAt time.Time
 	DeletedAt sql.NullTime
 	Email     string
+	Name      string
 	Password  string
 }

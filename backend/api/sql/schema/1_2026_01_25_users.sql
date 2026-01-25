@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP NOT NULL DEFAULT now(),
     deleted_at TIMESTAMP NULL DEFAULT now(),
     email TEXT NOT NULL UNIQUE,
+    name VARCHAR(200) NOT NULL,
     password TEXT NOT NULL DEFAULT 'unset'
 );
 -- +goose Down
-DROP TABLE users;
+DROP TABLE IF EXISTS users;
