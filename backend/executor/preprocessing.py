@@ -6,7 +6,7 @@ from constant import *
 
 if not os.path.exists(DATA_PATH):
     print(f"Warning: {DATA_PATH} not found. Using dummy path for demonstration.")
-    file_path = 'data/data.parquet'
+    file_path = 'data/train-00000-of-00132.parquet'
 
 def read_in_batches(path, batch_size=10000):
     """
@@ -37,9 +37,9 @@ if __name__ == "__main__":
             
             # Access the second column (index 1) - typically 'text' in these datasets
             if len(first_batch.columns) > 1:
-                col_name = first_batch.columns[1]
-                value = first_batch.iloc[0, 1]
-                print(f"Second Column Name: {col_name}")
+                col_name = first_batch.columns[0]
+                value = first_batch.iloc[0, 0]
+                print(f"First Column Name: {col_name}")
                 print(f"Value:\n{value}")
             else:
                 print("Note: File only has one column.")
