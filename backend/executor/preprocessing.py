@@ -1,12 +1,5 @@
-import os
 
 import pyarrow.parquet as pq
-
-from constant import *
-
-if not os.path.exists(DATA_PATH):
-    print(f"Warning: {DATA_PATH} not found. Using dummy path for demonstration.")
-    file_path = 'data/train-00000-of-00132.parquet'
 
 def read_in_batches(path, batch_size=10000):
     """
@@ -25,31 +18,3 @@ def read_in_batches(path, batch_size=10000):
             
     except Exception as e:
         print(f"Error reading parquet file: {e}")
-
-if __name__ == "__main__":
-    # Get the first batch and print the text column of the first item
-    print(f"Loading first item from: {DATA_PATH}")
-    batches = read_in_batches(DATA_PATH, batch_size=1)
-    try:
-        first_batch = next(batches)
-        if not first_batch.empty:
-            print("\n--- First Item (Row 0) ---")
-            
-            # Access the second column (index 1) - typically 'text' in these datasets
-            if len(first_batch.columns) > 1:
-                col_name = first_batch.columns[0]
-                value = first_batch.iloc[0, 0]
-                print(f"First Column Name: {col_name}")
-                print(f"Value:\n{value}")
-            else:
-                print("Note: File only has one column.")
-                print(f"First Column Name: {first_batch.columns[0]}")
-                print(f"Value:\n{first_batch.iloc[0, 0]}")
-                
-            print("--------------------------\n")
-        else:
-            print("The file is empty.")
-    except StopIteration:
-        print("No data found.")
-    except Exception as e:
-        print(f"Failed to read: {e}")
