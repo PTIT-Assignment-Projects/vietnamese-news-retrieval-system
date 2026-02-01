@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from underthesea import text_normalize, word_tokenize
 from elasticsearch import Elasticsearch
 from elasticsearch import NotFoundError
-from constant import STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES
+from constant import STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, ALL_NEWS_FETCHED_FILEPATH
 
 es = Elasticsearch(ELASTIC_HOST)
 def load_stopwords(path):
@@ -76,7 +76,7 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
                 rec = {
                     "id": hit["_id"],
                     "category": src.get("category", "").strip(),
-                    "speech": clean_text(src.get("content", "")),
+                    "content": clean_text(src.get("content", "")),
                 }
                 batch_buf.append(rec)
 
@@ -119,13 +119,17 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
     )
 
     return df
-
+def vietnamese_tokenizer(text):
+    tokens = word_tokenize(text, format="text").split()
+    return [t.replace("_", " ") if "_" in t else t for t in tokens]
 def compute_keywords(df: pd.DataFrame, group_col, top_n = TOP_N_FEATURE) -> dict:
     results = {}
     grouped = df.groupby(group_col)["content"].apply(lambda x: " ".join(x))
     vectorizer = TfidfVectorizer(
         max_features=MAX_FEATURES,
         stop_words=list(vietnamese_stopwords),
+        tokenizer=vietnamese_tokenizer,
+        token_pattern=None
     )
 
     tfidf_matrix = vectorizer.fit_transform(grouped.values)
@@ -137,10 +141,10 @@ def compute_keywords(df: pd.DataFrame, group_col, top_n = TOP_N_FEATURE) -> dict
     return results
 
 def main():
-    df = fetch_all_speeches()
-    df = df.rename(columns={"speech": "content"})
-    csv_path = os.path.join(BATCH_SAVE_DIR, "all_news.csv")
-    df.to_csv(csv_path, index=False, encoding="utf-8")
+    # df = fetch_all_speeches()
+    # csv_path = os.path.join(BATCH_SAVE_DIR, "all_news.csv")
+    # df.to_csv(csv_path, index=False, encoding="utf-8")
+    df = pd.read_csv(ALL_NEWS_FETCHED_FILEPATH)
     print(df.info())
 if __name__ == "__main__":
     main()

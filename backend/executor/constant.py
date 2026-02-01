@@ -8,3 +8,4 @@ STOPWORD_FILENAME = "vietnamese-stopwords.txt"
 ELASTIC_HOST = os.getenv("ELASTIC_HOST")
 TOP_N_FEATURE = 10
 MAX_FEATURES = 5000
+ALL_NEWS_FETCHED_FILEPATH = "batches/all_news.csv"
