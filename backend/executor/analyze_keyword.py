@@ -178,6 +178,49 @@ def compute_keywords(df: pd.DataFrame, group_col, top_n=TOP_N_FEATURE) -> dict:
         
     return results
 
+def compute_keywords_per_news(df: pd.DataFrame, top_n=TOP_N_FEATURE, batch_size=5000) -> dict:
+    results = {}
+    print(f"Computing keywords for {len(df)} news items in batches of {batch_size}...")
+
+    # We use a space-based tokenizer since content is already tokenized by clean_text
+    vectorizer = TfidfVectorizer(
+        max_features=MAX_FEATURES,
+        stop_words=list(vietnamese_stopwords),
+        tokenizer=str.split,
+        token_pattern=None
+    )
+
+    contents = df["content"].astype(str).tolist()
+    # Use 'id' column if available, otherwise fallback to index
+    indices = df["id"].tolist() if "id" in df.columns else df.index.tolist()
+
+    for start in range(0, len(contents), batch_size):
+        end = start + batch_size
+        batch_texts = contents[start:end]
+        batch_ids = indices[start:end]
+
+        # Filter for valid non-empty content
+        valid_batch = [(i, t) for i, t in zip(batch_ids, batch_texts) if t.strip()]
+        if not valid_batch:
+            continue
+
+        idxs, texts = zip(*valid_batch)
+
+        # Fit and transform on the current batch (local IDF)
+        tfidf_matrix = vectorizer.fit_transform(texts)
+        feature_names = vectorizer.get_feature_names_out()
+
+        # Convert to array for score extraction
+        dense_matrix = tfidf_matrix.toarray()
+        for local_idx, news_id in enumerate(idxs):
+            row = dense_matrix[local_idx]
+            top_idx = row.argsort()[-top_n:][::-1]
+            results[news_id] = [(feature_names[j], round(row[j], 3)) for j in top_idx if row[j] > 0]
+
+        print(f"  > Processed {min(end, len(contents))}/{len(contents)} news items")
+
+    return results
+
 def main():
     if not os.path.exists(ALL_NEWS_FETCHED_FILEPATH):
         print(f"File {ALL_NEWS_FETCHED_FILEPATH} not found. Fetching from Elasticsearch...")
@@ -185,7 +228,8 @@ def main():
         df.to_csv(ALL_NEWS_FETCHED_FILEPATH, index=False, encoding="utf-8")
     else:
         print(f"Loading data from {ALL_NEWS_FETCHED_FILEPATH}...")
-        df = pd.read_csv(ALL_NEWS_FETCHED_FILEPATH, usecols=["category", "content"])
+        # Include 'id' in usecols to allow mapping keywords back to documents
+        df = pd.read_csv(ALL_NEWS_FETCHED_FILEPATH, usecols=["id", "category", "content"])
         df = df.dropna(subset=["content"])
         # print("Re-cleaning content to filter out weird keywords...")
         # df["content"] = df["content"].astype(str).apply(clean_text)
@@ -196,6 +240,13 @@ def main():
     # Print some results
     for cat, kws in list(keywords.items())[:5]:
         print(f"\nCategory: {cat}")
+        print(f"Keywords: {kws}")
+
+    print("\nComputing per-news keywords (sample)...")
+    # Compute for a small sample or full dataset if needed
+    news_keywords = compute_keywords_per_news(df.iloc[:1000]) # Sample for demonstration
+    for nid, kws in list(news_keywords.items())[:3]:
+        print(f"\nNews ID: {nid}")
         print(f"Keywords: {kws}")
 
     # Optionally save keywords to file
