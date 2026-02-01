@@ -4,7 +4,7 @@ import os
 import pandas as pd
 from underthesea import text_normalize, word_tokenize
 from elasticsearch import Elasticsearch
-
+from elasticsearch import NotFoundError
 from constant import STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST
 
 es = Elasticsearch(ELASTIC_HOST)
@@ -44,18 +44,18 @@ def save_batch(batch_idx, records):
         for rec in records:
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
+
 def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
     prog = load_progress()
     already_processed = int(prog.get("processed", 0))
 
-    data = []
     res = es.search(
         index=INDEX_NAME,
         body={"query": {"match_all": {}}},
         scroll="5m",
         size=batch_size
     )
-    scroll_id = res["_scroll_id"]
+    scroll_id = res.get("_scroll_id")
     total_hits = res["hits"]["total"]["value"]
     print(f"Total hits: {total_hits}")
 
@@ -64,43 +64,60 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
     batch_idx = 0
     batch_buf = []
 
-    # If already_processed > 0 we will skip collecting until we've advanced past that count.
-    while hits:
-        for hit in hits:
-            fetched += 1
-            if fetched <= already_processed:
-                continue  # skip already-processed docs
+    try:
+        while hits:
+            for hit in hits:
+                fetched += 1
+                if fetched <= already_processed:
+                    continue  # skip already-processed docs
 
-            src = hit["_source"]
-            rec = {
-                "id": hit["_id"],
-                "category": src.get("category", "").strip(),
-                "speech": clean_text(src.get("content", "")),
-            }
-            batch_buf.append(rec)
+                src = hit["_source"]
+                rec = {
+                    "id": hit["_id"],
+                    "category": src.get("category", "").strip(),
+                    "speech": clean_text(src.get("content", "")),
+                }
+                batch_buf.append(rec)
 
-            # flush buffer to disk when it reaches save_batch_size
-            if len(batch_buf) >= save_batch_size:
-                save_batch(batch_idx, batch_buf)
-                batch_idx += 1
-                already_processed += len(batch_buf)
-                save_progress(already_processed)
-                batch_buf = []
+                if len(batch_buf) >= save_batch_size:
+                    save_batch(batch_idx, batch_buf)
+                    batch_idx += 1
+                    already_processed += len(batch_buf)
+                    save_progress(already_processed)
+                    batch_buf = []
 
-        print(f"Retrieved {min(fetched,total_hits)}/{total_hits} news (processed {already_processed})")
-        res = es.scroll(scroll_id=scroll_id, scroll="5m")
-        scroll_id = res["_scroll_id"]
-        hits = res["hits"]["hits"]
+            print(f"Retrieved {min(fetched, total_hits)}/{total_hits} news (processed {already_processed})")
 
-    # flush any remaining records
-    if batch_buf:
-        save_batch(batch_idx, batch_buf)
-        already_processed += len(batch_buf)
-        save_progress(already_processed)
+            try:
+                res = es.scroll(scroll_id=scroll_id, scroll="5m")
+            except NotFoundError:
+                print("Scroll context expired; stopping early and saving progress.")
+                break
 
-    # Optionally load all batches into a single DataFrame
-    df = pd.concat([pd.read_json(os.path.join(BATCH_SAVE_DIR, f), lines=True) for f in sorted(os.listdir(BATCH_SAVE_DIR)) if f.endswith(".jsonl")], ignore_index=True)
+            scroll_id = res.get("_scroll_id")
+            hits = res["hits"]["hits"]
+    finally:
+        # flush remaining buffer and save progress
+        if batch_buf:
+            save_batch(batch_idx, batch_buf)
+            already_processed += len(batch_buf)
+            save_progress(already_processed)
+
+        # attempt to clear scroll
+        try:
+            if scroll_id:
+                es.clear_scroll(scroll_id=scroll_id)
+        except Exception:
+            pass
+
+    # load saved batches into DataFrame
+    df = pd.concat(
+        [pd.read_json(os.path.join(BATCH_SAVE_DIR, f), lines=True)
+         for f in sorted(os.listdir(BATCH_SAVE_DIR)) if f.endswith(".jsonl")],
+        ignore_index=True
+    )
     return df
+
 
 
 def main():
