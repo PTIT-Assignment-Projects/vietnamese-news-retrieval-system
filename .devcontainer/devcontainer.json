@@ -6,7 +6,10 @@
 		"vscode": {
 			"settings": {},
 			"extensions": [
-				"streetsidesoftware.code-spell-checker"
+				"streetsidesoftware.code-spell-checker",
+				"ms-toolsai.jupyter",
+				"golang.Go",
+				"ms-azuretools.vscode-docker"
 			]
 		}
 	},
@@ -17,5 +20,9 @@
 			"onAutoForward": "notify"
 		}
 	},
-	"postCreateCommand": "pip3 install -r requirements.txt"
+	"postCreateCommand": "pip3 install -r ./backend/executor/requirements.txt",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/go:1": {}
+	}
 }
