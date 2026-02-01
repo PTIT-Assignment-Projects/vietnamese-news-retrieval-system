@@ -12,7 +12,11 @@ from constant import STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE,
 es = Elasticsearch(ELASTIC_HOST)
 def load_stopwords(path):
     with open(path, "r", encoding="utf-8") as f:
-        return {line.strip() for line in f if line.strip()}
+        return {
+            line.strip().replace(" ", "_").lower()
+            for line in f
+            if line.strip()
+        }
 
 stopword_path = os.path.join(os.path.dirname(__file__), "file", STOPWORD_FILENAME)
 vietnamese_stopwords = load_stopwords(stopword_path)
@@ -36,13 +40,10 @@ def clean_text(text: str) -> str:
         # Only keep tokens that match our valid character set
         if not valid_pattern.match(t):
             continue
-            
-        # Replace underscores with spaces for keyword extraction
-        t_cleaned = t.replace("_", " ")
         
         # Finally, check for stopwords and length
-        if t_cleaned not in vietnamese_stopwords and len(t_cleaned) > 1:
-            cleaned_tokens.append(t_cleaned)
+        if t not in vietnamese_stopwords and len(t) > 1:
+            cleaned_tokens.append(t)
             
     return " ".join(cleaned_tokens)
 
@@ -190,17 +191,17 @@ def main():
         df["content"] = df["content"].astype(str).apply(clean_text)
 
     print(f"Data loaded. Shape: {df.shape}")
-    keywords = compute_keywords(df, "category")
-    pd.to_pickle(keywords, CATEGORY_KEYWORDS_PICKLE_FILE)
-    # Print some results
-    for cat, kws in list(keywords.items())[:5]:
-        print(f"\nCategory: {cat}")
-        print(f"Keywords: {kws}")
+    # keywords = compute_keywords(df, "category")
+    # pd.to_pickle(keywords, CATEGORY_KEYWORDS_PICKLE_FILE)
+    # # Print some results
+    # for cat, kws in list(keywords.items())[:5]:
+    #     print(f"\nCategory: {cat}")
+    #     print(f"Keywords: {kws}")
 
-    # Optionally save keywords to file
-    with open("keywords.json", "w", encoding="utf-8") as f:
-        json.dump(keywords, f, ensure_ascii=False, indent=4)
-    print("\nKeywords saved to keywords.json")
+    # # Optionally save keywords to file
+    # with open("keywords.json", "w", encoding="utf-8") as f:
+    #     json.dump(keywords, f, ensure_ascii=False, indent=4)
+    # print("\nKeywords saved to keywords.json")
 
 if __name__ == "__main__":
     main()
