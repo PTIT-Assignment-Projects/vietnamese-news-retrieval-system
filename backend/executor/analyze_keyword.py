@@ -159,7 +159,7 @@ def compute_keywords(df: pd.DataFrame, group_col, top_n=TOP_N_FEATURE) -> dict:
     # This avoids the extremely memory-intensive underthesea.word_tokenize on large strings.
     vectorizer = TfidfVectorizer(
         max_features=MAX_FEATURES,
-        stop_words=list(vietnamese_stopwords),
+        stop_words=None,
         tokenizer=str.split,
         token_pattern=None
     )
@@ -187,21 +187,21 @@ def main():
         print(f"Loading data from {ALL_NEWS_FETCHED_FILEPATH}...")
         df = pd.read_csv(ALL_NEWS_FETCHED_FILEPATH, usecols=["category", "content"])
         df = df.dropna(subset=["content"])
-        print("Re-cleaning content to filter out weird keywords...")
-        df["content"] = df["content"].astype(str).apply(clean_text)
+        # print("Re-cleaning content to filter out weird keywords...")
+        # df["content"] = df["content"].astype(str).apply(clean_text)
 
     print(f"Data loaded. Shape: {df.shape}")
-    # keywords = compute_keywords(df, "category")
-    # pd.to_pickle(keywords, CATEGORY_KEYWORDS_PICKLE_FILE)
-    # # Print some results
-    # for cat, kws in list(keywords.items())[:5]:
-    #     print(f"\nCategory: {cat}")
-    #     print(f"Keywords: {kws}")
+    keywords = compute_keywords(df, "category")
+    pd.to_pickle(keywords, CATEGORY_KEYWORDS_PICKLE_FILE)
+    # Print some results
+    for cat, kws in list(keywords.items())[:5]:
+        print(f"\nCategory: {cat}")
+        print(f"Keywords: {kws}")
 
-    # # Optionally save keywords to file
-    # with open("keywords.json", "w", encoding="utf-8") as f:
-    #     json.dump(keywords, f, ensure_ascii=False, indent=4)
-    # print("\nKeywords saved to keywords.json")
+    # Optionally save keywords to file
+    with open("keywords.json", "w", encoding="utf-8") as f:
+        json.dump(keywords, f, ensure_ascii=False, indent=4)
+    print("\nKeywords saved to keywords.json")
 
 if __name__ == "__main__":
     main()
