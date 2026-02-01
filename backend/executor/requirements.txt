@@ -2,3 +2,4 @@ pyarrow==23.0.0
 pandas==3.0.0
 underthesea==9.1.4
 elasticsearch==9.2.1
+pyvi==0.1.1
