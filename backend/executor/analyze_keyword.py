@@ -89,7 +89,7 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
             print(f"Retrieved {min(fetched, total_hits)}/{total_hits} news (processed {already_processed})")
 
             try:
-                res = es.scroll(scroll_id=scroll_id, scroll="5h")
+                res = es.scroll(scroll_id=scroll_id, scroll="5m")
             except NotFoundError:
                 print("Scroll context expired; stopping early and saving progress.")
                 break
@@ -116,12 +116,15 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
          for f in sorted(os.listdir(BATCH_SAVE_DIR)) if f.endswith(".jsonl")],
         ignore_index=True
     )
+
     return df
 
 
 
 def main():
     df = fetch_all_speeches()
-    print(df.head())
+    csv_path = os.path.join(BATCH_SAVE_DIR, "all_news.csv")
+    df.to_csv(csv_path, index=False, encoding="utf-8-sig")
+    print(df.info())
 if __name__ == "__main__":
     main()
