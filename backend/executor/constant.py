@@ -6,3 +6,5 @@ CHUNK_SIZE = 5000
 INDEX_NAME = "vietnamese_curated_data"
 STOPWORD_FILENAME = "vietnamese-stopwords.txt"
 ELASTIC_HOST = os.getenv("ELASTIC_HOST")
+TOP_N_FEATURE = 10
+MAX_FEATURES = 5000

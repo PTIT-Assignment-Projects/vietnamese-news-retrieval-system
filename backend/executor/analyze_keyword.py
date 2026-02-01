@@ -2,10 +2,11 @@ import json
 import os
 
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
 from underthesea import text_normalize, word_tokenize
 from elasticsearch import Elasticsearch
 from elasticsearch import NotFoundError
-from constant import STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST
+from constant import STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES
 
 es = Elasticsearch(ELASTIC_HOST)
 def load_stopwords(path):
@@ -119,12 +120,27 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
 
     return df
 
+def compute_keywords(df: pd.DataFrame, group_col, top_n = TOP_N_FEATURE) -> dict:
+    results = {}
+    grouped = df.groupby(group_col)["content"].apply(lambda x: " ".join(x))
+    vectorizer = TfidfVectorizer(
+        max_features=MAX_FEATURES,
+        stop_words=list(vietnamese_stopwords),
+    )
 
+    tfidf_matrix = vectorizer.fit_transform(grouped.values)
+    feature_names = vectorizer.get_feature_names_out()
+    for idx, name in enumerate(grouped.index):
+        scores = tfidf_matrix[idx].toarray()[0]
+        top_idx = scores.argsort()[-top_n:][::-1]
+        results[name] = [(feature_names[i], round(scores[i], 3)) for i in top_idx]
+    return results
 
 def main():
     df = fetch_all_speeches()
-    # csv_path = os.path.join(BATCH_SAVE_DIR, "all_news.csv")
-    # df.to_csv(csv_path, index=False, encoding="utf-8-sig")
+    df = df.rename(columns={"speech": "content"})
+    csv_path = os.path.join(BATCH_SAVE_DIR, "all_news.csv")
+    df.to_csv(csv_path, index=False, encoding="utf-8")
     print(df.info())
 if __name__ == "__main__":
     main()
