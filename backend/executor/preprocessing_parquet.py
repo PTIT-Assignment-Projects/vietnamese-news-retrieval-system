@@ -1,4 +1,3 @@
-import pyarrow.dataset as ds
 import os
 from constant import DATA_PATH, CHUNK_SIZE
 from preprocessing import read_in_batches
