@@ -5,8 +5,18 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from analyze_keyword import vietnamese_stopwords
 from constant import CATEGORY_TEXT_PICKLE_FILE, MAX_FEATURES, SVD_FEATURES, RANDOM_STATE, TOP_K_SIMILARITY, \
-    CATEGORY_COLUMN, CATEGORIES_SIMILARITY_PICKLE_FILE
+    CATEGORY_COLUMN, CATEGORIES_SIMILARITY_JSON_FILE
+from util import save_json_file
 
+
+class CategorySimilarity:
+    def __init__(self, first_column: str, second_column: str, similarity: float):
+        self.first_column = first_column
+        self.second_column = second_column
+        self.similarity = similarity
+
+    def __str__(self) -> str:
+        return f"{self.first_column} — {self.second_column}: {self.similarity:.3f}"
 
 def load_pickle_file(file_path):
     try:
@@ -35,20 +45,19 @@ def top_result_similarity(data: pd.DataFrame, similarity_matrix):
             pairs.append((categories[i], categories[j], sim))
 
     # Sort by similarity (highest first)
-    top_k_pairs = sorted(pairs, key=lambda x: x[2], reverse=True)[:TOP_K_SIMILARITY]
-
-    # Display top results
-    print(f"\n🏆 Top-{TOP_K_SIMILARITY} most similar pairs of members:")
-    for a, b, s in top_k_pairs:
-        print(f"{a} — {b}: {s:.3f}")
-    return top_k_pairs
+    top_pairs = sorted(pairs, key=lambda x: x[2], reverse=True)
+    result = []
+    for a, b, s in top_pairs:
+        cat_sim = CategorySimilarity(a, b, s)
+        result.append(cat_sim)
+        print(str(result))
+    return result
 
 def main():
     category_texts = load_pickle_file(CATEGORY_TEXT_PICKLE_FILE)
     X = vectorizer_with_svd(category_texts)
     similarity_matrix = cosine_similarity(X)
-    top_k_pairs = top_result_similarity(category_texts, similarity_matrix)
-    pd.DataFrame(top_k_pairs, columns=[f"{CATEGORY_COLUMN}1", f"{CATEGORY_COLUMN}2", "similarity"]).to_pickle(CATEGORIES_SIMILARITY_PICKLE_FILE)
-    print(f"\n💾 Results saved to {CATEGORIES_SIMILARITY_PICKLE_FILE}")
+    top_pairs = top_result_similarity(category_texts, similarity_matrix)
+    save_json_file(top_pairs, CATEGORIES_SIMILARITY_JSON_FILE)
 if __name__ == "__main__":
     main()
