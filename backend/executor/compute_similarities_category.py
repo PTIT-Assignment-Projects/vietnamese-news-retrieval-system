@@ -4,7 +4,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 from analyze_keyword import vietnamese_stopwords
-from constant import CATEGORY_TEXT_PICKLE_FILE, MAX_FEATURES, SVD_FEATURES, RANDOM_STATE, TOP_K_SIMILARITY
+from constant import CATEGORY_TEXT_PICKLE_FILE, MAX_FEATURES, SVD_FEATURES, RANDOM_STATE, TOP_K_SIMILARITY, \
+    CATEGORY_COLUMN, CATEGORIES_SIMILARITY_PICKLE_FILE
 
 
 def load_pickle_file(file_path):
@@ -47,5 +48,7 @@ def main():
     X = vectorizer_with_svd(category_texts)
     similarity_matrix = cosine_similarity(X)
     top_k_pairs = top_result_similarity(category_texts, similarity_matrix)
+    pd.DataFrame(top_k_pairs, columns=[f"{CATEGORY_COLUMN}1", f"{CATEGORY_COLUMN}2", "similarity"]).to_pickle(CATEGORIES_SIMILARITY_PICKLE_FILE)
+    print(f"\n💾 Results saved to {CATEGORIES_SIMILARITY_PICKLE_FILE}")
 if __name__ == "__main__":
     main()
