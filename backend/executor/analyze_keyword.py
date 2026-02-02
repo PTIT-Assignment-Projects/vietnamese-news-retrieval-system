@@ -6,8 +6,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from underthesea import text_normalize, word_tokenize
 from elasticsearch import Elasticsearch
 from elasticsearch import NotFoundError
-from constant import CATEGORY_KEYWORDS_JSON_FILE, CATEGORY_KEYWORDS_PICKLE_FILE, KEYWORDS_PER_NEWS_JSON_FILE, KEYWORDS_PER_NEWS_PICKLE_FILE, STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, \
-    ALL_NEWS_FETCHED_FILEPATH
+from constant import CATEGORY_COLUMN, CATEGORY_KEYWORDS_JSON_FILE, CATEGORY_KEYWORDS_PICKLE_FILE, \
+    CATEGORY_TEXT_PICKLE_FILE, CONTENT_COLUMN, KEYWORDS_PER_NEWS_JSON_FILE, KEYWORDS_PER_NEWS_PICKLE_FILE, \
+    STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, \
+    ALL_NEWS_FETCHED_FILEPATH, ID_COLUMN
 
 es = Elasticsearch(ELASTIC_HOST)
 def load_stopwords(path):
@@ -97,9 +99,9 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
 
                 src = hit["_source"]
                 rec = {
-                    "id": hit["_id"],
-                    "category": src.get("category", "").strip(),
-                    "content": clean_text(src.get("content", "")),
+                    ID_COLUMN: hit["_id"],
+                    CATEGORY_COLUMN: src.get(CATEGORY_COLUMN, "").strip(),
+                    CONTENT_COLUMN: clean_text(src.get(CONTENT_COLUMN, "")),
                 }
                 batch_buf.append(rec)
 
@@ -149,7 +151,7 @@ def compute_keywords(df: pd.DataFrame, group_col, top_n=TOP_N_FEATURE) -> dict:
     print(f"Grouping data by {group_col}...")
     # Group content by category and join them. 
     # To save memory, we ensure content is string and handled efficiently.
-    grouped = df.groupby(group_col)["content"].apply(lambda x: " ".join(x.astype(str)))
+    grouped = df.groupby(group_col)[CONTENT_COLUMN].apply(lambda x: " ".join(x.astype(str)))
     
     print(f"Initializing TfidfVectorizer for {len(grouped)} groups...")
     # the text is already cleaned and tokenized in clean_text,
@@ -185,7 +187,7 @@ def compute_keywords_per_news(df: pd.DataFrame, top_n=TOP_N_FEATURE, batch_size=
         token_pattern=None
     )
 
-    contents = df["content"].astype(str).tolist()
+    contents = df[CONTENT_COLUMN].astype(str).tolist()
     # Use 'id' column if available, otherwise fallback to index
     indices = df["id"].tolist() if "id" in df.columns else df.index.tolist()
 
@@ -224,11 +226,11 @@ def main():
     else:
         print(f"Loading data from {ALL_NEWS_FETCHED_FILEPATH}...")
         # Include 'id' in usecols to allow mapping keywords back to documents
-        df = pd.read_csv(ALL_NEWS_FETCHED_FILEPATH, usecols=["id", "category", "content"])
-        df = df.dropna(subset=["content"])
+        df = pd.read_csv(ALL_NEWS_FETCHED_FILEPATH, usecols=[ID_COLUMN, CATEGORY_COLUMN, CONTENT_COLUMN])
+        df = df.dropna(subset=[CONTENT_COLUMN])
 
     print(f"Data loaded. Shape: {df.shape}")
-    keywords = compute_keywords(df, "category")
+    keywords = compute_keywords(df, CATEGORY_COLUMN)
     pd.to_pickle(keywords, CATEGORY_KEYWORDS_PICKLE_FILE)
     # Print some results
     for cat, kws in list(keywords.items())[:5]:
@@ -251,6 +253,9 @@ def main():
     with open(KEYWORDS_PER_NEWS_JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(news_keywords, f, ensure_ascii=False, indent=4)
     print(f"\nKeywords saved to {KEYWORDS_PER_NEWS_JSON_FILE}")
+
+    category_texts = df.groupby(CATEGORY_COLUMN)[CONTENT_COLUMN].apply(lambda x: " ".join(x.astype(str)))
+    pd.to_pickle(category_texts, CATEGORY_TEXT_PICKLE_FILE)
 
 if __name__ == "__main__":
     main()
