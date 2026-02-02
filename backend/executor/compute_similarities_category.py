@@ -4,19 +4,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 from analyze_keyword import vietnamese_stopwords
-from constant import CATEGORY_TEXT_PICKLE_FILE, MAX_FEATURES, SVD_FEATURES, RANDOM_STATE, TOP_K_SIMILARITY, \
-    CATEGORY_COLUMN, CATEGORIES_SIMILARITY_JSON_FILE
+from constant import CATEGORY_TEXT_PICKLE_FILE, MAX_FEATURES, SVD_FEATURES, RANDOM_STATE, CATEGORY_COLUMN, CATEGORIES_SIMILARITY_JSON_FILE
 from util import save_json_file
 
-
-class CategorySimilarity:
-    def __init__(self, first_column: str, second_column: str, similarity: float):
-        self.first_column = first_column
-        self.second_column = second_column
-        self.similarity = similarity
-
-    def __str__(self) -> str:
-        return f"{self.first_column} — {self.second_column}: {self.similarity:.3f}"
 
 def load_pickle_file(file_path):
     try:
@@ -41,16 +31,18 @@ def top_result_similarity(data: pd.DataFrame, similarity_matrix):
     pairs = []
     for i in range(len(categories)):
         for j in range(i + 1, len(categories)):
-            sim = similarity_matrix[i, j]
+            sim = float(similarity_matrix[i, j])
             pairs.append((categories[i], categories[j], sim))
 
-    # Sort by similarity (highest first)
     top_pairs = sorted(pairs, key=lambda x: x[2], reverse=True)
     result = []
     for a, b, s in top_pairs:
-        cat_sim = CategorySimilarity(a, b, s)
-        result.append(cat_sim)
-        print(str(result))
+        result.append({
+            f"{CATEGORY_COLUMN}1": a,
+            f"{CATEGORY_COLUMN}2": b,
+            "similarity": s
+        })
+        print(f"{a} — {b}: {s:.3f}")
     return result
 
 def main():
