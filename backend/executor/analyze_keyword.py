@@ -6,8 +6,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from underthesea import text_normalize, word_tokenize
 from elasticsearch import Elasticsearch
 from elasticsearch import NotFoundError
-from constant import STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, \
-    ALL_NEWS_FETCHED_FILEPATH, CATEGORY_KEYWORDS_PICKLE_FILE
+from constant import CATEGORY_KEYWORDS_JSON_FILE, CATEGORY_KEYWORDS_PICKLE_FILE, KEYWORDS_PER_NEWS_JSON_FILE, KEYWORDS_PER_NEWS_PICKLE_FILE, STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, \
+    ALL_NEWS_FETCHED_FILEPATH
 
 es = Elasticsearch(ELASTIC_HOST)
 def load_stopwords(path):
@@ -142,9 +142,7 @@ def fetch_all_speeches(batch_size=5000, save_batch_size=1000):
     )
 
     return df
-# Removed vietnamese_tokenizer because it was redundant and caused memory issues 
-# when processing large concatenated strings. The content is already tokenized 
-# during the cleaning phase.
+
 def compute_keywords(df: pd.DataFrame, group_col, top_n=TOP_N_FEATURE) -> dict:
     results = {}
     
@@ -154,9 +152,7 @@ def compute_keywords(df: pd.DataFrame, group_col, top_n=TOP_N_FEATURE) -> dict:
     grouped = df.groupby(group_col)["content"].apply(lambda x: " ".join(x.astype(str)))
     
     print(f"Initializing TfidfVectorizer for {len(grouped)} groups...")
-    # Since the text is already cleaned and tokenized in clean_text,
-    # we can use a simple space-based tokenizer.
-    # This avoids the extremely memory-intensive underthesea.word_tokenize on large strings.
+    # the text is already cleaned and tokenized in clean_text,
     vectorizer = TfidfVectorizer(
         max_features=MAX_FEATURES,
         stop_words=None,
@@ -182,7 +178,6 @@ def compute_keywords_per_news(df: pd.DataFrame, top_n=TOP_N_FEATURE, batch_size=
     results = {}
     print(f"Computing keywords for {len(df)} news items in batches of {batch_size}...")
 
-    # We use a space-based tokenizer since content is already tokenized by clean_text
     vectorizer = TfidfVectorizer(
         max_features=MAX_FEATURES,
         stop_words=list(vietnamese_stopwords),
@@ -231,8 +226,6 @@ def main():
         # Include 'id' in usecols to allow mapping keywords back to documents
         df = pd.read_csv(ALL_NEWS_FETCHED_FILEPATH, usecols=["id", "category", "content"])
         df = df.dropna(subset=["content"])
-        # print("Re-cleaning content to filter out weird keywords...")
-        # df["content"] = df["content"].astype(str).apply(clean_text)
 
     print(f"Data loaded. Shape: {df.shape}")
     keywords = compute_keywords(df, "category")
@@ -245,14 +238,19 @@ def main():
     print("\nComputing per-news keywords (sample)...")
     # Compute for a small sample or full dataset if needed
     news_keywords = compute_keywords_per_news(df.iloc[:1000]) # Sample for demonstration
+    pd.to_pickle(news_keywords, KEYWORDS_PER_NEWS_PICKLE_FILE)
     for nid, kws in list(news_keywords.items())[:3]:
         print(f"\nNews ID: {nid}")
         print(f"Keywords: {kws}")
 
     # Optionally save keywords to file
-    with open("keywords.json", "w", encoding="utf-8") as f:
+    with open(CATEGORY_KEYWORDS_JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(keywords, f, ensure_ascii=False, indent=4)
-    print("\nKeywords saved to keywords.json")
+    print(f"\nKeywords saved to {CATEGORY_KEYWORDS_JSON_FILE}")
+
+    with open(KEYWORDS_PER_NEWS_JSON_FILE, "w", encoding="utf-8") as f:
+        json.dump(news_keywords, f, ensure_ascii=False, indent=4)
+    print(f"\nKeywords saved to {KEYWORDS_PER_NEWS_JSON_FILE}")
 
 if __name__ == "__main__":
     main()
