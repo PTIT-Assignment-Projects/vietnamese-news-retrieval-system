@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from underthesea import text_normalize, word_tokenize
 from elasticsearch import Elasticsearch
 from elasticsearch import NotFoundError
-from constant import CATEGORY_KEYWORDS_JSON_FILE, CATEGORY_KEYWORDS_PICKLE_FILE, KEYWORDS_PER_NEWS_JSON_FILE, KEYWORDS_PER_NEWS_PICKLE_FILE, STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, \
+from constant import CATEGORY_COLUMN, CATEGORY_KEYWORDS_JSON_FILE, CATEGORY_KEYWORDS_PICKLE_FILE, CATEGORY_TEXT_PICKLE_FILE, CONTENT_COLUMN, KEYWORDS_PER_NEWS_JSON_FILE, KEYWORDS_PER_NEWS_PICKLE_FILE, STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, \
     ALL_NEWS_FETCHED_FILEPATH
 
 es = Elasticsearch(ELASTIC_HOST)
@@ -228,29 +228,33 @@ def main():
         df = df.dropna(subset=["content"])
 
     print(f"Data loaded. Shape: {df.shape}")
-    keywords = compute_keywords(df, "category")
-    pd.to_pickle(keywords, CATEGORY_KEYWORDS_PICKLE_FILE)
-    # Print some results
-    for cat, kws in list(keywords.items())[:5]:
-        print(f"\nCategory: {cat}")
-        print(f"Keywords: {kws}")
+    # keywords = compute_keywords(df, "category")
+    # pd.to_pickle(keywords, CATEGORY_KEYWORDS_PICKLE_FILE)
+    # # Print some results
+    # for cat, kws in list(keywords.items())[:5]:
+    #     print(f"\nCategory: {cat}")
+    #     print(f"Keywords: {kws}")
 
-    print("\nComputing per-news keywords (sample)...")
-    # Compute for a small sample or full dataset if needed
-    news_keywords = compute_keywords_per_news(df.iloc[:1000]) # Sample for demonstration
-    pd.to_pickle(news_keywords, KEYWORDS_PER_NEWS_PICKLE_FILE)
-    for nid, kws in list(news_keywords.items())[:3]:
-        print(f"\nNews ID: {nid}")
-        print(f"Keywords: {kws}")
+    # print("\nComputing per-news keywords (sample)...")
+    # # Compute for a small sample or full dataset if needed
+    # news_keywords = compute_keywords_per_news(df.iloc[:1000]) # Sample for demonstration
+    # pd.to_pickle(news_keywords, KEYWORDS_PER_NEWS_PICKLE_FILE)
+    # for nid, kws in list(news_keywords.items())[:3]:
+    #     print(f"\nNews ID: {nid}")
+    #     print(f"Keywords: {kws}")
 
-    # Optionally save keywords to file
-    with open(CATEGORY_KEYWORDS_JSON_FILE, "w", encoding="utf-8") as f:
-        json.dump(keywords, f, ensure_ascii=False, indent=4)
-    print(f"\nKeywords saved to {CATEGORY_KEYWORDS_JSON_FILE}")
+    # # Optionally save keywords to file
+    # with open(CATEGORY_KEYWORDS_JSON_FILE, "w", encoding="utf-8") as f:
+    #     json.dump(keywords, f, ensure_ascii=False, indent=4)
+    # print(f"\nKeywords saved to {CATEGORY_KEYWORDS_JSON_FILE}")
 
-    with open(KEYWORDS_PER_NEWS_JSON_FILE, "w", encoding="utf-8") as f:
-        json.dump(news_keywords, f, ensure_ascii=False, indent=4)
-    print(f"\nKeywords saved to {KEYWORDS_PER_NEWS_JSON_FILE}")
+    # with open(KEYWORDS_PER_NEWS_JSON_FILE, "w", encoding="utf-8") as f:
+    #     json.dump(news_keywords, f, ensure_ascii=False, indent=4)
+    # print(f"\nKeywords saved to {KEYWORDS_PER_NEWS_JSON_FILE}")
+
+    category_texts = df.groupby(CATEGORY_COLUMN)[CONTENT_COLUMN].apply(lambda x: " ".join(x.astype(str)))
+    print(category_texts.head())
+    # pd.to_pickle(category_texts, CATEGORY_TEXT_PICKLE_FILE)
 
 if __name__ == "__main__":
     main()
