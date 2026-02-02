@@ -10,6 +10,7 @@ from constant import CATEGORY_COLUMN, CATEGORY_KEYWORDS_JSON_FILE, CATEGORY_KEYW
     CATEGORY_TEXT_PICKLE_FILE, CONTENT_COLUMN, KEYWORDS_PER_NEWS_JSON_FILE, KEYWORDS_PER_NEWS_PICKLE_FILE, \
     STOPWORD_FILENAME, INDEX_NAME, ELASTIC_HOST, TOP_N_FEATURE, MAX_FEATURES, \
     ALL_NEWS_FETCHED_FILEPATH, ID_COLUMN
+from util import save_json_file
 
 es = Elasticsearch(ELASTIC_HOST)
 def load_stopwords(path):
@@ -238,20 +239,17 @@ def main():
         print(f"Keywords: {kws}")
 
     print("\nComputing per-news keywords (sample)...")
-    # Compute for a small sample or full dataset if needed
-    news_keywords = compute_keywords_per_news(df.iloc[:1000]) # Sample for demonstration
+    news_keywords = compute_keywords_per_news(df)
     pd.to_pickle(news_keywords, KEYWORDS_PER_NEWS_PICKLE_FILE)
     for nid, kws in list(news_keywords.items())[:3]:
         print(f"\nNews ID: {nid}")
         print(f"Keywords: {kws}")
 
     # Optionally save keywords to file
-    with open(CATEGORY_KEYWORDS_JSON_FILE, "w", encoding="utf-8") as f:
-        json.dump(keywords, f, ensure_ascii=False, indent=4)
+    save_json_file(keywords, CATEGORY_KEYWORDS_JSON_FILE)
     print(f"\nKeywords saved to {CATEGORY_KEYWORDS_JSON_FILE}")
 
-    with open(KEYWORDS_PER_NEWS_JSON_FILE, "w", encoding="utf-8") as f:
-        json.dump(news_keywords, f, ensure_ascii=False, indent=4)
+    save_json_file(news_keywords, KEYWORDS_PER_NEWS_JSON_FILE)
     print(f"\nKeywords saved to {KEYWORDS_PER_NEWS_JSON_FILE}")
 
     category_texts = df.groupby(CATEGORY_COLUMN)[CONTENT_COLUMN].apply(lambda x: " ".join(x.astype(str)))

@@ -1,0 +1,1502 @@
+[
+    {
+        "category1": "Law_and_Government",
+        "category2": "News",
+        "similarity": 0.777941283091603
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.7612615598389683
+    },
+    {
+        "category1": "News",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.722355953414032
+    },
+    {
+        "category1": "News",
+        "category2": "People_and_Society",
+        "similarity": 0.7204641353861572
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "People_and_Society",
+        "similarity": 0.7193116788390864
+    },
+    {
+        "category1": "People_and_Society",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.69918373879744
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "People_and_Society",
+        "similarity": 0.6698549200408178
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "News",
+        "similarity": 0.6655814425140726
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.6529184471412133
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Law_and_Government",
+        "similarity": 0.6384616076137041
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Shopping",
+        "similarity": 0.6367337950885252
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "People_and_Society",
+        "similarity": 0.6346918686230246
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "People_and_Society",
+        "similarity": 0.6193336037403852
+    },
+    {
+        "category1": "People_and_Society",
+        "category2": "Science",
+        "similarity": 0.6158296108536739
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.6156998950417538
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Computers_and_Electronics",
+        "similarity": 0.6042048188272465
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Online_Communities",
+        "similarity": 0.601939775521157
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Finance",
+        "similarity": 0.5988252861306801
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Shopping",
+        "similarity": 0.5914249597259641
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Online_Communities",
+        "similarity": 0.5874590926257361
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Home_and_Garden",
+        "similarity": 0.5826871664706713
+    },
+    {
+        "category1": "Sensitive_Subjects",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.5729766850064562
+    },
+    {
+        "category1": "News",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.5709106591825908
+    },
+    {
+        "category1": "Finance",
+        "category2": "News",
+        "similarity": 0.5681275556134519
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.5655321594812883
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "People_and_Society",
+        "similarity": 0.5644133288806816
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Books_and_Literature",
+        "similarity": 0.5602181688465021
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.5601393106290952
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Shopping",
+        "similarity": 0.5600649613267217
+    },
+    {
+        "category1": "People_and_Society",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.5564835026605102
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Online_Communities",
+        "similarity": 0.5554894074860565
+    },
+    {
+        "category1": "News",
+        "category2": "Science",
+        "similarity": 0.5551711659973055
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.5513144902049141
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Online_Communities",
+        "similarity": 0.5490638362474721
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "People_and_Society",
+        "similarity": 0.5468646045649312
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Science",
+        "similarity": 0.5460122269467721
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Home_and_Garden",
+        "similarity": 0.5438452249363783
+    },
+    {
+        "category1": "Finance",
+        "category2": "Law_and_Government",
+        "similarity": 0.5346259361988761
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.5332365731490117
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Home_and_Garden",
+        "similarity": 0.5327202329699587
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.5323486964974368
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "News",
+        "similarity": 0.5293148830167982
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Real_Estate",
+        "similarity": 0.5238194635514457
+    },
+    {
+        "category1": "News",
+        "category2": "Online_Communities",
+        "similarity": 0.5226573340808501
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Shopping",
+        "similarity": 0.5198646088985555
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Science",
+        "similarity": 0.5170357390495245
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Health",
+        "similarity": 0.5141162038908866
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Food_and_Drink",
+        "similarity": 0.513769531126213
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Shopping",
+        "similarity": 0.5131887193387433
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Shopping",
+        "similarity": 0.5110551537379486
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.5095004558553412
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.5070891362928814
+    },
+    {
+        "category1": "Science",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.505352365164816
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "News",
+        "similarity": 0.5052352613108774
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Law_and_Government",
+        "similarity": 0.5041327617425299
+    },
+    {
+        "category1": "Pets_and_Animals",
+        "category2": "Science",
+        "similarity": 0.5031465669653797
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Shopping",
+        "similarity": 0.5028373997544999
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "Science",
+        "similarity": 0.5022733448301471
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "People_and_Society",
+        "similarity": 0.5011731426444075
+    },
+    {
+        "category1": "Real_Estate",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.5002491582676248
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Science",
+        "similarity": 0.4988340369399499
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Online_Communities",
+        "similarity": 0.4987288589840192
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.4978797258030666
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "People_and_Society",
+        "similarity": 0.49744345507162263
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Food_and_Drink",
+        "similarity": 0.496830231980431
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Online_Communities",
+        "similarity": 0.49540477885681533
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.48909668722176103
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Home_and_Garden",
+        "similarity": 0.48890476558453244
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "News",
+        "similarity": 0.4845552321531842
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Science",
+        "similarity": 0.48171405746360696
+    },
+    {
+        "category1": "People_and_Society",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.48114203952093687
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.4792627639965951
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.47521263136610065
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Science",
+        "similarity": 0.4745110269161806
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.4735945695004495
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Health",
+        "similarity": 0.4726831942131538
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Science",
+        "similarity": 0.47169871249306766
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.4706934368027174
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.46843607137533627
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "News",
+        "similarity": 0.4666432372159503
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Online_Communities",
+        "similarity": 0.46651153883599256
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Real_Estate",
+        "similarity": 0.4663020956394252
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.4618848955705191
+    },
+    {
+        "category1": "Finance",
+        "category2": "Real_Estate",
+        "similarity": 0.46083437069640076
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Science",
+        "similarity": 0.46061871467192456
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.4591961819753234
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.45857119461864726
+    },
+    {
+        "category1": "Health",
+        "category2": "People_and_Society",
+        "similarity": 0.4558767972698207
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.45453685494436286
+    },
+    {
+        "category1": "News",
+        "category2": "Real_Estate",
+        "similarity": 0.4537614781473165
+    },
+    {
+        "category1": "Games",
+        "category2": "Sports",
+        "similarity": 0.4512661512095438
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Law_and_Government",
+        "similarity": 0.451259451178021
+    },
+    {
+        "category1": "Games",
+        "category2": "Online_Communities",
+        "similarity": 0.44922734010123505
+    },
+    {
+        "category1": "Shopping",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.4487804742934254
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Real_Estate",
+        "similarity": 0.4471325591467464
+    },
+    {
+        "category1": "Science",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.4467044621745701
+    },
+    {
+        "category1": "Finance",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.4466780088546003
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Law_and_Government",
+        "similarity": 0.4457468798945113
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.4452032371231725
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.44460532519703444
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Home_and_Garden",
+        "similarity": 0.4398068070931287
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Science",
+        "similarity": 0.4376486199318656
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "Shopping",
+        "similarity": 0.43626850250775845
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "News",
+        "similarity": 0.43542274283030397
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "News",
+        "similarity": 0.43384402806630445
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.43190995723027525
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Online_Communities",
+        "similarity": 0.43129818680368537
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.42992567866257814
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Online_Communities",
+        "similarity": 0.4289628430505487
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.42833046096275706
+    },
+    {
+        "category1": "Health",
+        "category2": "Science",
+        "similarity": 0.426881845997833
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.4253753824465814
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Science",
+        "similarity": 0.4247780452817787
+    },
+    {
+        "category1": "Games",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.42449549532871644
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Science",
+        "similarity": 0.42415080407881356
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.4231122150889841
+    },
+    {
+        "category1": "Games",
+        "category2": "People_and_Society",
+        "similarity": 0.4212368606729163
+    },
+    {
+        "category1": "Health",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.41995470351979364
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.41696935165996635
+    },
+    {
+        "category1": "Pets_and_Animals",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.4168887919497941
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.415834704025546
+    },
+    {
+        "category1": "Finance",
+        "category2": "Shopping",
+        "similarity": 0.413854964889484
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Games",
+        "similarity": 0.41208078772097
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "News",
+        "similarity": 0.40989622252854996
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Food_and_Drink",
+        "similarity": 0.4045771780145304
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Law_and_Government",
+        "similarity": 0.4043168975517313
+    },
+    {
+        "category1": "News",
+        "category2": "Shopping",
+        "similarity": 0.40405098686400653
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Business_and_Industrial",
+        "similarity": 0.4037441904258578
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "People_and_Society",
+        "similarity": 0.4028598611902002
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Law_and_Government",
+        "similarity": 0.40155386110950975
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.3994067767874749
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Business_and_Industrial",
+        "similarity": 0.39693607418930016
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Law_and_Government",
+        "similarity": 0.3963298590644931
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Computers_and_Electronics",
+        "similarity": 0.3945296622224884
+    },
+    {
+        "category1": "People_and_Society",
+        "category2": "Shopping",
+        "similarity": 0.39411671861056746
+    },
+    {
+        "category1": "Games",
+        "category2": "News",
+        "similarity": 0.39390345669640725
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Food_and_Drink",
+        "similarity": 0.39323134431523343
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.3924406849022405
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Games",
+        "similarity": 0.3916717899387507
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.3904667668367025
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Business_and_Industrial",
+        "similarity": 0.38953353750222164
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "People_and_Society",
+        "similarity": 0.38892170484602545
+    },
+    {
+        "category1": "Health",
+        "category2": "News",
+        "similarity": 0.3881258111138422
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.38787094635140607
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Online_Communities",
+        "similarity": 0.3871133972994947
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Shopping",
+        "similarity": 0.38636038899958164
+    },
+    {
+        "category1": "Real_Estate",
+        "category2": "Shopping",
+        "similarity": 0.3861296635152514
+    },
+    {
+        "category1": "News",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.3857793040764284
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Finance",
+        "similarity": 0.38537004533733843
+    },
+    {
+        "category1": "News",
+        "category2": "Sports",
+        "similarity": 0.3845325745576221
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.3844407278515857
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "People_and_Society",
+        "similarity": 0.3833220192230345
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Online_Communities",
+        "similarity": 0.38218474016343823
+    },
+    {
+        "category1": "Finance",
+        "category2": "People_and_Society",
+        "similarity": 0.3821053359276491
+    },
+    {
+        "category1": "People_and_Society",
+        "category2": "Sports",
+        "similarity": 0.3808631593234553
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.38041720378782035
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.3794197129168096
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.3790801379236511
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Shopping",
+        "similarity": 0.378849775686631
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.37858325253302133
+    },
+    {
+        "category1": "Pets_and_Animals",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.37766897946151506
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "People_and_Society",
+        "similarity": 0.3774387039148178
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Games",
+        "similarity": 0.37699392942665344
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Beauty_and_Fitness",
+        "similarity": 0.3768037798347229
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.37433355816992947
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Health",
+        "similarity": 0.3726439268514531
+    },
+    {
+        "category1": "Health",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.3720983649008204
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Science",
+        "similarity": 0.3717479639157832
+    },
+    {
+        "category1": "Science",
+        "category2": "Shopping",
+        "similarity": 0.3713030633085905
+    },
+    {
+        "category1": "Finance",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.37084353409526655
+    },
+    {
+        "category1": "Finance",
+        "category2": "Online_Communities",
+        "similarity": 0.3693759381465807
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.36898691176252973
+    },
+    {
+        "category1": "Games",
+        "category2": "Science",
+        "similarity": 0.3687279534089949
+    },
+    {
+        "category1": "Games",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.36532031450281693
+    },
+    {
+        "category1": "Finance",
+        "category2": "Games",
+        "similarity": 0.3651142127132216
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Computers_and_Electronics",
+        "similarity": 0.3637450108606939
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.36236466421033964
+    },
+    {
+        "category1": "Health",
+        "category2": "Online_Communities",
+        "similarity": 0.3620462172229431
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Sports",
+        "similarity": 0.3616943020047707
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.3584577643038355
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Shopping",
+        "similarity": 0.3576464326004914
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Computers_and_Electronics",
+        "similarity": 0.35752501601545844
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Law_and_Government",
+        "similarity": 0.3556189405833641
+    },
+    {
+        "category1": "Finance",
+        "category2": "Food_and_Drink",
+        "similarity": 0.35471787629279755
+    },
+    {
+        "category1": "Games",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.3539504825095951
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Real_Estate",
+        "similarity": 0.3538117201021023
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Food_and_Drink",
+        "similarity": 0.3523839382492403
+    },
+    {
+        "category1": "Finance",
+        "category2": "Science",
+        "similarity": 0.3507041210394371
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.35036570846547677
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Home_and_Garden",
+        "similarity": 0.3470517288828138
+    },
+    {
+        "category1": "People_and_Society",
+        "category2": "Real_Estate",
+        "similarity": 0.3456226590240688
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Home_and_Garden",
+        "similarity": 0.3456096251355822
+    },
+    {
+        "category1": "Finance",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.34550520777029947
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "News",
+        "similarity": 0.34223661895892554
+    },
+    {
+        "category1": "Real_Estate",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.34146520014200954
+    },
+    {
+        "category1": "Health",
+        "category2": "Law_and_Government",
+        "similarity": 0.3411160290863929
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.34101645699771094
+    },
+    {
+        "category1": "Sensitive_Subjects",
+        "category2": "Shopping",
+        "similarity": 0.3409521020851637
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.34090600200545823
+    },
+    {
+        "category1": "Sensitive_Subjects",
+        "category2": "Sports",
+        "similarity": 0.34035615517810386
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.3389543543950411
+    },
+    {
+        "category1": "Games",
+        "category2": "Law_and_Government",
+        "similarity": 0.336947551889229
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.3366274570217559
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Real_Estate",
+        "similarity": 0.33570518694377477
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Health",
+        "similarity": 0.3351672440145185
+    },
+    {
+        "category1": "Health",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.33488455718125787
+    },
+    {
+        "category1": "Games",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.3343369814467112
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.3341834224926395
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.3340093836318728
+    },
+    {
+        "category1": "Health",
+        "category2": "Home_and_Garden",
+        "similarity": 0.3304425907289273
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.33012591198297636
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Real_Estate",
+        "similarity": 0.32892676748851374
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.3287531386853389
+    },
+    {
+        "category1": "Games",
+        "category2": "Shopping",
+        "similarity": 0.32824061168273044
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "News",
+        "similarity": 0.32737424307862417
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Real_Estate",
+        "similarity": 0.3258476159834606
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Games",
+        "similarity": 0.32533185004159304
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Books_and_Literature",
+        "similarity": 0.32290241046788526
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.32115050576155446
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Law_and_Government",
+        "similarity": 0.31989779164085846
+    },
+    {
+        "category1": "Real_Estate",
+        "category2": "Science",
+        "similarity": 0.3196783123838478
+    },
+    {
+        "category1": "Pets_and_Animals",
+        "category2": "Shopping",
+        "similarity": 0.31869508185318757
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.3181745397837866
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Health",
+        "similarity": 0.3180756132252733
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Health",
+        "similarity": 0.316177730285687
+    },
+    {
+        "category1": "Health",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.3154023729118707
+    },
+    {
+        "category1": "Science",
+        "category2": "Sports",
+        "similarity": 0.31527040971576786
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "News",
+        "similarity": 0.31480928521098683
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Games",
+        "similarity": 0.31434983808905353
+    },
+    {
+        "category1": "Health",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.3132302183396839
+    },
+    {
+        "category1": "Games",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.31103754089943864
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Sensitive_Subjects",
+        "similarity": 0.310671961414103
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "Sports",
+        "similarity": 0.3088545050523112
+    },
+    {
+        "category1": "Finance",
+        "category2": "Home_and_Garden",
+        "similarity": 0.3088508858635895
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.3085318212599197
+    },
+    {
+        "category1": "Health",
+        "category2": "Shopping",
+        "similarity": 0.3085186899143863
+    },
+    {
+        "category1": "Finance",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.3074986568073014
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Finance",
+        "similarity": 0.30590746447889644
+    },
+    {
+        "category1": "Hobbies_and_Leisure",
+        "category2": "Sports",
+        "similarity": 0.30452142795478193
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Law_and_Government",
+        "similarity": 0.3034518371552707
+    },
+    {
+        "category1": "Finance",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.2981564085016127
+    },
+    {
+        "category1": "Online_Communities",
+        "category2": "Real_Estate",
+        "similarity": 0.2979348591609589
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.29707611058657724
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Computers_and_Electronics",
+        "similarity": 0.29303629811178855
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Finance",
+        "similarity": 0.2928927571181532
+    },
+    {
+        "category1": "Health",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.2924221863479525
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Shopping",
+        "similarity": 0.2920775003184532
+    },
+    {
+        "category1": "Sports",
+        "category2": "Travel_and_Transportation",
+        "similarity": 0.29122121718254973
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Science",
+        "similarity": 0.286076480002649
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Hobbies_and_Leisure",
+        "similarity": 0.2859452663962227
+    },
+    {
+        "category1": "Games",
+        "category2": "Home_and_Garden",
+        "similarity": 0.28590082249847415
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Sports",
+        "similarity": 0.28581012632554725
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Real_Estate",
+        "similarity": 0.28520634296188785
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Food_and_Drink",
+        "similarity": 0.284887683752997
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Home_and_Garden",
+        "similarity": 0.2833307331960698
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Business_and_Industrial",
+        "similarity": 0.28234330113616085
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Shopping",
+        "similarity": 0.2820187892768842
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.28178280166331676
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.28145669314878324
+    },
+    {
+        "category1": "Business_and_Industrial",
+        "category2": "Sports",
+        "similarity": 0.2810581907039651
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.2801715851495334
+    },
+    {
+        "category1": "Games",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.27916480359164375
+    },
+    {
+        "category1": "Law_and_Government",
+        "category2": "Sports",
+        "similarity": 0.2783407081857846
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "People_and_Society",
+        "similarity": 0.278224505653505
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Real_Estate",
+        "similarity": 0.2759576359199437
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Real_Estate",
+        "similarity": 0.27303413325166986
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Online_Communities",
+        "similarity": 0.2722525728454183
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.27044028791743097
+    },
+    {
+        "category1": "Jobs_and_Education",
+        "category2": "Sports",
+        "similarity": 0.26940956767854135
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Games",
+        "similarity": 0.2648773025160592
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Law_and_Government",
+        "similarity": 0.26319856115531354
+    },
+    {
+        "category1": "Games",
+        "category2": "Health",
+        "similarity": 0.2571695751395247
+    },
+    {
+        "category1": "Arts_and_Entertainment",
+        "category2": "Autos_and_Vehicles",
+        "similarity": 0.2564301872107465
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Internet_and_Telecom",
+        "similarity": 0.2557872994020762
+    },
+    {
+        "category1": "Finance",
+        "category2": "Health",
+        "similarity": 0.2542685067938446
+    },
+    {
+        "category1": "Food_and_Drink",
+        "category2": "Sports",
+        "similarity": 0.2484991376826857
+    },
+    {
+        "category1": "Shopping",
+        "category2": "Sports",
+        "similarity": 0.24235441520863796
+    },
+    {
+        "category1": "Computers_and_Electronics",
+        "category2": "Sports",
+        "similarity": 0.24043133181275328
+    },
+    {
+        "category1": "Games",
+        "category2": "Real_Estate",
+        "similarity": 0.24041875502744564
+    },
+    {
+        "category1": "Finance",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.23801387870548726
+    },
+    {
+        "category1": "Pets_and_Animals",
+        "category2": "Real_Estate",
+        "similarity": 0.235989622658473
+    },
+    {
+        "category1": "Internet_and_Telecom",
+        "category2": "Sports",
+        "similarity": 0.23580562871004365
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Finance",
+        "similarity": 0.23557084585449597
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Games",
+        "similarity": 0.23505405579343877
+    },
+    {
+        "category1": "Finance",
+        "category2": "Sports",
+        "similarity": 0.23217871717531677
+    },
+    {
+        "category1": "Pets_and_Animals",
+        "category2": "Sports",
+        "similarity": 0.22933232916520363
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Beauty_and_Fitness",
+        "similarity": 0.22886723465060982
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Finance",
+        "similarity": 0.2249153326576942
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Sports",
+        "similarity": 0.22284063081528963
+    },
+    {
+        "category1": "Health",
+        "category2": "Real_Estate",
+        "similarity": 0.22271636373050924
+    },
+    {
+        "category1": "Beauty_and_Fitness",
+        "category2": "Real_Estate",
+        "similarity": 0.222507065569738
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Jobs_and_Education",
+        "similarity": 0.21291626822996088
+    },
+    {
+        "category1": "Health",
+        "category2": "Sports",
+        "similarity": 0.2105642054535428
+    },
+    {
+        "category1": "Home_and_Garden",
+        "category2": "Sports",
+        "similarity": 0.20856798238532726
+    },
+    {
+        "category1": "Books_and_Literature",
+        "category2": "Real_Estate",
+        "similarity": 0.20625330759765245
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Books_and_Literature",
+        "similarity": 0.20607198848485225
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Health",
+        "similarity": 0.2027969285528835
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Pets_and_Animals",
+        "similarity": 0.20108902180286642
+    },
+    {
+        "category1": "Real_Estate",
+        "category2": "Sports",
+        "similarity": 0.18873834605053175
+    },
+    {
+        "category1": "Autos_and_Vehicles",
+        "category2": "Sports",
+        "similarity": 0.1820613751206986
+    }
+]
