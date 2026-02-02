@@ -5,3 +5,8 @@ elasticsearch==9.2.1
 pyvi==0.1.1
 scikit-learn==1.8.0
 python-dotenv==1.2.1
+sentence-transformers
+torch
+matplotlib
+seaborn
+tqdm
