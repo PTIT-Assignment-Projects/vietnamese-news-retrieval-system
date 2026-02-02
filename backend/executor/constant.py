@@ -10,6 +10,8 @@ MAX_FEATURES = 5000
 RANDOM_STATE = 42
 SVD_FEATURES = 100
 TOP_K_SIMILARITY = 10
+NUM_TOPICS = 10
+NUM_WORDS_PER_TOPICS = 15
 
 # Elasticsearch
 INDEX_NAME = "vietnamese_curated_data"
@@ -38,3 +40,5 @@ KEYWORDS_PER_NEWS_PICKLE_FILE = "data/keyword_per_news.pkl"
 KEYWORDS_PER_NEWS_JSON_FILE = "file/keyword_per_news.json"
 CATEGORY_TEXT_PICKLE_FILE = "data/category_texts.pkl"
 CATEGORIES_SIMILARITY_JSON_FILE = "file/categories_similarities.json"
+TOPIC_SUMMARIZATION_JSON_FILE = "file/topic_summary.json"
+LSI_DATA_PICKLE_FILE = "file/lsi_data.pkl"
